@@ -7,7 +7,7 @@ Based on code by Daniel Shiffman for Coding Train
 [Coding train repo](https://github.com/CodingTrain/website/tree/master/CodingChallenges/CC_088_snowfall/P5)
 
 ### To Do
-*Add interaction with windows
-*Make second version with window mask behind snowflakes
-*Scale to full size
-*export using CCapture.js and ffmpeg
+* Add interaction with windows
+* Make second version with window mask behind snowflakes
+* Scale to full size
+* Export using CCapture.js and ffmpeg
