@@ -19,26 +19,29 @@ function draw(){
     } 
     //remove snow when it leaves the screen
     for(let i = snow.length-1; i>=0; i--) {
-        if (snow[i].offScreen()){
+        if (snow[i].offScreenY()){
             snow.splice(i,1);
+        }
+        if (snow[i].offScreenX()) {
+            snow[i].vel.x = -1 * snow[i].vel.x;
         }
     }
 
-    //window mask
+    //Window Masks
     fill(0);
     noStroke();
-    //regular windows
+    //regular window sizes
         for (let j = 62; j < 633; j+=79) {
             for(let i = 66; i < 175; i+= 54) {
                  rect(i, j, 30, 43);
             }
     }
-    //circle tops
+    //circular tops
     for(let i = 81; i < 200; i+= 54) {
         circle(i, 62, 30);
    }
 
-   //Long Bottoms
+   //Long rectangles on bottom
    for (let j = 692; j < 880; j+=101) {
         for(let i = 66; i < 175; i+= 54) {
         rect(i, j, 30, 68);
