@@ -1,5 +1,6 @@
 # P5.JS generative snow fall for Fisher Tower projection
 [Night Lights Denver](http://nightlightsdenver.com/)
+
 Generative snow for projection mapping project.
 
 Based on code by Daniel Shiffman for Coding Train
