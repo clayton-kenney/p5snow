@@ -1,20 +1,23 @@
-let snow = [];
-let gravity;
+let snow = []; //array that holds the snowflakes
+let gravity; //gravity global variable
+let angle; //angle global variable
+let t; //time global variable
 
 function setup() {
-    const canvas = createCanvas(270, 860);
-    canvas.parent('sketchxx')
-    gravity = createVector(0, 0.005);
+    const canvas = createCanvas(270, 860); //canvas is 1/4 scale of tower, set to canvas variable
+    canvas.parent('sketchxx') //set canvas parent for html handoff
+    gravity = createVector(0, .001); //define gravity, limited by 
+    frameRate(60);
 }
 
 function draw(){
     background(100); //gray so we can see the snow
-    
-    //Snow Flakes!!
+    t = frameCount / 60; //set the time
+    //Make Snow Flakes!!
     snow.push(new Snowflake());
     for(flake of snow) {
         flake.applyForce(gravity);
-        flake.update();
+        flake.update(t);
         flake.render(); 
     } 
     //remove snow when it leaves the screen
@@ -22,6 +25,7 @@ function draw(){
         if (snow[i].offScreenY()){
             snow.splice(i,1);
         }
+        //if snow hits side of screen, reverse x velocity
         if (snow[i].offScreenX()) {
             snow[i].vel.x = -1 * snow[i].vel.x;
         }

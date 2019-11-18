@@ -4,22 +4,25 @@ function getRandomSize() {
     let r1 = random(1);
     let r2 = random(1);
     if(r2 > r1) {
-        return r1 * 9 + 0.75;
+        return r1 * 8 + 1;
     }
   }
 
 }
 //snowflake constructor
 class Snowflake {
-
+    
     constructor() {
         let x = random(width);  //starting point of flake based on width
         let y = random(-100, -10)  //generate flakes offscreen so they are falling 
         let xv = random(-1, 1); //assign random horizontal vector on creation
-        this.pos = createVector(x, y);
-        this.vel = createVector(xv, 0);
-        this.acc = createVector();
-        this.r = getRandomSize();  //snowflake size based on rando algo
+        this.pos = createVector(x, y); //position vector
+        this.vel = createVector(xv, 0); //initial velocity vector
+        this.acc = createVector(); //acceleration vector
+        this.r = getRandomSize();  //snowflake size based on above rando algo
+        this.radius = sqrt(random(pow(width / 2, 2)));
+        this.initialangle = random(0, 2 * PI); //generate random starting angle between 0 & 2PI
+        
     }
     
     applyForce(force){
@@ -34,9 +37,14 @@ class Snowflake {
     }
     update() {
         this.vel.add(this.acc);
-        this.vel.limit(this.r * .2);
+        this.vel.limit(this.r * .2); //gravity limit
         this.pos.add(this.vel);
         this.acc.mult(0);
+
+        // x position follows a circle falling
+        let w = 0.1; // angular speed
+        let angle = w * t + this.initialangle;
+        this.pos.x = width / 2 + this.radius * sin(angle);
     }
     render() {
         stroke(255);
